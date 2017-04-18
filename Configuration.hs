@@ -17,6 +17,11 @@ module Configuration where
     -- imaginary part of initial state
     imag_init = replicate 51 0.0
 
+    -- 1D potential
+    potential = zero
+    zero = replicate 51 0.0
+    gauss = [-10*exp (-((x-0.25)**2)/0.005) | x <- [0.0, 0.02..1.0]]
+
     -- temporal step size
     step_t = 4e-6
     -- spacial step size

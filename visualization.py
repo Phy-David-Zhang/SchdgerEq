@@ -13,6 +13,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+# switch output data: real, imag, prob, both, all
+global switch
+switch = "prob"
+
 # read the data in data.txt and store it in 
 # variable "data"
 cmd = "data = "
@@ -24,9 +28,12 @@ with open("data.txt", 'r') as file:
 # extract imaginary and real part of the solution
 imag = []
 real = []
+prob = []
 for psi in data:
     real.append(psi[0])
     imag.append(psi[1])
+    prob.append([np.sqrt(r**2+i**2)
+        for r,i in zip(psi[0], psi[1])])
     
 # setup the corresponding spatial coordinates
 x = np.linspace(0, 1, len(real[0]))
@@ -36,6 +43,7 @@ fig, ax = plt.subplots()
 time = ax.text(.7, .5, '', fontsize=15)
 line1, = ax.plot([], [], linewidth=3, color='b')
 line2, = ax.plot([], [], linewidth=3, color='r')
+line3, = ax.plot([], [], linewidth=3, color='k')
 
 ax.set_xlabel("Position, $x$")
 ax.set_ylabel("Wavefunction,  $\\Psi(x, t)$")
@@ -43,18 +51,48 @@ ax.set_ylim([-.8,.8])
 
 # initialization of animation
 def init():
-    line1.set_data(x, real[0])
-    line2.set_data(x, imag[0])
+    global switch
+    
+    def set1():
+        line1.set_data(x, real[0])
+    def set2():
+        line2.set_data(x, imag[0])
+    def set3():
+        line3.set_data(x, prob[0])
+    
     time.set_text('')
     ax.set_xlim([0,1])
-    return line1, line2, time
+    
+    if switch == "real": set1()
+    elif switch == "imag": set2()
+    elif switch == "both": set1(); set2()
+    elif switch == "prob": set3()
+    elif switch == "all": set1(); set2(); set3()
+    else: set3()
+    
+    return line1, line2, line3, time
 
 # animation control
 def animate(i):
-    line1.set_ydata(real[i])  # update the data
-    line2.set_ydata(imag[i]) 
+    global switch
+    
+    # update the data
+    def set1(i):
+        line1.set_ydata(real[i])
+    def set2(i):
+        line2.set_ydata(imag[i])
+    def set3(i):
+        line3.set_ydata(prob[i])
+
     time.set_text("t = {0:.4f}".format(0.02*i))
-    return line1, line2
+
+    if switch == "real": set1(i)
+    elif switch == "imag": set2(i)
+    elif switch == "both": set1(i); set2(i)
+    elif switch == "prob": set3(i)
+    elif switch == "all": set1(i); set2(i); set3(i)
+    else: set3(i)
+    return line1, line2, line3
 
 # perform animation
 ani = animation.FuncAnimation(fig, animate,

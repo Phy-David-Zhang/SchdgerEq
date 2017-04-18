@@ -21,6 +21,10 @@ import Configuration
 double :: [Double] -> [Double]
 double xs = [x*2 | x <- xs]
 
+-- 1D hamiltonian
+hamiltonian :: [Double] -> [Double]
+hamiltonian xs = zipWith (+) (laplace xs) potential
+
 -- 1D laplace operator
 laplace :: [Double] -> [Double]
 laplace xs = 0.0:(central xs (spc_tot-1))
@@ -41,19 +45,19 @@ schrodinger real imag step =
     [zipWith (+) imag [step * x / 6 | x <- zipWith (+) imagk1
         (zipWith (+) (double imagk2) (zipWith (+) (double imagk3) imagk4))]]
     where
-        realk1 = [-0.5 * ix | ix <- laplace imag]
-        imagk1 = [ 0.5 * rx | rx <- laplace real]
-        realk2 = [-0.5 * ix | ix <- laplace
+        realk1 = [-0.5 * ix | ix <- hamiltonian imag]
+        imagk1 = [ 0.5 * rx | rx <- hamiltonian real]
+        realk2 = [-0.5 * ix | ix <- hamiltonian
             (zipWith (+) imag [step * x / 2 | x <- realk1])]
-        imagk2 = [ 0.5 * rx | rx <- laplace
+        imagk2 = [ 0.5 * rx | rx <- hamiltonian
             (zipWith (+) real [step * x / 2 | x <- imagk1])]
-        realk3 = [-0.5 * ix | ix <- laplace
+        realk3 = [-0.5 * ix | ix <- hamiltonian
             (zipWith (+) imag [step * x / 2 | x <- realk2])]
-        imagk3 = [ 0.5 * rx | rx <- laplace
+        imagk3 = [ 0.5 * rx | rx <- hamiltonian
             (zipWith (+) real [step * x / 2 | x <- imagk2])]
-        realk4 = [-0.5 * ix | ix <- laplace
+        realk4 = [-0.5 * ix | ix <- hamiltonian
             (zipWith (+) imag [step * x | x <- realk3])]
-        imagk4 = [ 0.5 * rx | rx <- laplace
+        imagk4 = [ 0.5 * rx | rx <- hamiltonian
             (zipWith (+) real [step * x | x <- imagk3])]
 
 -- solve the equation and push the solution into the list
