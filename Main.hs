@@ -13,7 +13,7 @@
 --   a txt file (default data.txt).
 
 -- import solve engine and configuration
-import SchdgerEngine
+import SchdgerEq
 import Configuration
 
 -- main: write data into a txt file

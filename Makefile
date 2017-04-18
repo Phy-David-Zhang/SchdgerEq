@@ -4,6 +4,11 @@
 # Contact via phy.zhangck@gmail.com
 # All rights reserved.
 
+# extended python environment
+# change to python if necessary
+python = ~/.anaconda3/bin/python
+
+# haskell configuration
 cmplr = ghc
 gflag = --make
 optmz = -O2
@@ -15,6 +20,7 @@ exepf = +RTS -sstderr
 target = Main.hs
 exefile = Main
 
+# generate data
 data:
 	@echo === Compiling Schrodinger Equation Solve Engine ===
 	@$(cmplr) $(gflag) $(optmz) $(proff) $(cmpfg) $(target)
@@ -24,16 +30,10 @@ data:
 	@rm -f *.o *.hi
 	@echo === Solution Generation Complete
 
-pack:
-	@echo === Building Haskell Solving Engine ===
-	@echo '>>> cabal sandbox init'
-	@cabal sandbox init
-	@echo
-	@echo '>>> cabal install --enable-shared'
-	@cabal install --enable-shared
-	@echo
-	@echo '>>> cp dist/dist-sandbox-*/build/*.dylib .'
-	@cp dist/dist-sandbox-*/build/*.dylib .
+# visualization
+visual:
+	@echo === Generating Visualization ===
+	@$(python) visualization.py
 
 clean:
 	@echo === Cleaning Haskell Build ===
