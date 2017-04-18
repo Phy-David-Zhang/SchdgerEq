@@ -15,6 +15,7 @@ module SchdgerEngine where
 
 -- import function "force" for force evaluation
 import Control.DeepSeq
+import Configuration
 
 -- double every element of a list
 double :: [Double] -> [Double]
@@ -22,9 +23,15 @@ double xs = [x*2 | x <- xs]
 
 -- 1D laplace operator
 laplace :: [Double] -> [Double]
-laplace xs = 0.0:zipWith (-)
-    (zipWith (+) (init (init xs)) (tail (tail xs)))
-    (double (tail (init xs))) ++ [0.0]
+laplace xs = 0.0:(central xs (spc_tot-1))
+
+-- 1D central difference
+central :: [Double] -> Int -> [Double]
+central xs 1 = [0.0]
+central xs n = (l+r-2*c)/step_x**2:(central (tail xs) (n-1))
+    where l = head xs
+          r = head (tail (tail xs))
+          c = head (tail xs)
 
 -- Runge-Kutta method of explicit integration
 schrodinger :: [Double] -> [Double] -> Double -> [[Double]]
@@ -57,4 +64,3 @@ solve real imag step tot =
         flash = force (schrodinger real imag step)
 
 -- this is the end of solve engine for Schrodinger equation
-

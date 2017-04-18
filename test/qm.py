@@ -9,7 +9,7 @@ with bcs: u(0) = u(x_max) = 0
 
 import numpy as np
 from scipy import interpolate
-from HaPy import SchdgerEngine
+#from HaPy import SchdgerEngine
 
 def c_to_tup(x):
     # given a complex number x, returns a tuple of floats for the real and imag parts of x

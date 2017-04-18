@@ -17,10 +17,10 @@ import timeit
 def initial(x):
     # return 0.3*np.exp(5j*x*np.pi)
     # return 0.5 * np.sin(5*x*np.pi)
-    return np.exp(-(x-0.3)**2/0.1**2)
+    return np.exp(-(x-0.5)**2/0.01)
 
-t_int = 0.000001
-foo = qm.Wavefunction(initial, dt=t_int, trange=(0,0.05))
+t_int = 1e-5
+foo = qm.Wavefunction(initial, dt=t_int, trange=(0,1))
 print("Enter")
 start = timeit.default_timer()
 foo.solve_py()

@@ -58,7 +58,7 @@ def animate(i):
 
 # perform animation
 ani = animation.FuncAnimation(fig, animate,
-                              np.arange(0, len(real), 3), 
+                              np.arange(0, len(real), 1), 
                               interval=10, 
                               blit=False, 
                               init_func=init)
