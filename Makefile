@@ -17,8 +17,8 @@ cmpfg = -fforce-recomp
 
 exepf = +RTS -sstderr
 
-target = Main.hs
-exefile = Main
+target = Generator.hs
+exefile = Generator
 
 # generate data
 data:
@@ -33,7 +33,7 @@ data:
 # visualization
 visual:
 	@echo === Generating Visualization ===
-	@$(python) visualization.py
+	@$(python) Visualizer.py
 
 clean:
 	@echo === Cleaning Haskell Build ===
