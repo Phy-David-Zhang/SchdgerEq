@@ -17,23 +17,23 @@ import matplotlib.animation as animation
 global switch
 switch = "prob"
 
-# read the data in data.txt and store it in 
+# read the data in Data.txt and store it in 
 # variable "data"
 cmd = "data = "
-with open("data.txt", 'r') as file:
-	for line in file:
-		cmd += line
-		exec(cmd)
+with open("Data.txt", 'r') as file:
+    for line in file:
+        line = line.replace(":+ ", "+1j*")
+        cmd += line
+        exec(cmd)
 
 # extract imaginary and real part of the solution
 imag = []
 real = []
 prob = []
 for psi in data:
-    real.append(psi[0])
-    imag.append(psi[1])
-    prob.append([np.sqrt(r**2+i**2)
-        for r,i in zip(psi[0], psi[1])])
+    real.append([x.real for x in psi])
+    imag.append([x.imag for x in psi])
+    prob.append([abs(x)**2 for x in psi])
     
 # setup the corresponding spatial coordinates
 x = np.linspace(0, 1, len(real[0]))
