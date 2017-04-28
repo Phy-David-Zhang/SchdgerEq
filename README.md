@@ -2,9 +2,10 @@
 
 This project aims to build a universal solver of Schrodinger equation in Haskell. This program is supposed to solve the Schrodinger equation with arbitrary potential and initial state.
 
-> Author: Zhang Chang-kai
->
-> Contact: phy.zhangck@gmail.com
+```
+	Author: Zhang Chang-kai
+	Contact: phy.zhangck@gmail.com
+```
 
 The visualization of the program includes efforts from Robert Brown.
 
