@@ -7,7 +7,7 @@ This project aims to build a universal solver of Schrodinger equation in Haskell
     Contact: phy.zhangck@gmail.com
 ```
 
-The visualization of the program includes efforts from Robert Brown.
+Copyright (C) 2017 Zhang Chang-kai. All Rights Reserved.
 
 ### Usage
 

@@ -1,7 +1,7 @@
 # Visualization of Solution of Schrodinger Equation
 # =================================================
 #
-#   Copyright (C) 2017 Robert Brown, Changkai Zhang
+#   Copyright (C) 2017 Changkai Zhang
 #   Contact via phy.zhangck@gmail.com
 #   All rights reserved.
 
