@@ -21,8 +21,8 @@ All the configurations are within file Configuration.hs, including
 
 - `real_init` and `image_init`: the initial state
 - `potential`: the potential in the equation
-- `step_t` and `step_x`: temporal and spacial step size
-- `rec_tot` and `src_tot`: total number of temporal and spacial steps
+- `step_t` and `step_x`: temporal and spatial step size
+- `rec_tot` and `src_tot`: total number of temporal and spatial steps
 - `gap`: frame rate, e.g. `gap=10` means output state every 10 recursions.
 
 ### Errors of Calculation
