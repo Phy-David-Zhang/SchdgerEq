@@ -79,7 +79,7 @@ spc_range = (-20,20)
 rec_num = 1.256e3 * 2
 
 # whether to save file
-save = True
+save = False
 
 
 # ======================
