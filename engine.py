@@ -70,7 +70,7 @@ class Schdger(object):
         self.nt = int(rec_num)
 
         # integration parameter
-        self.r = 0.5j * self.dt / self.dx**2
+        self.r = 0.25j * self.dt / self.dx**2
 
         # set coordinates
         self.x = np.linspace(spc_range[0], spc_range[1], self.nx)
@@ -123,7 +123,7 @@ class Schdger(object):
             self.trans[0,-1] = -self.r
 
         # apply potential
-        self.trans += np.diag(self.potential)
+        self.trans -= 0.5j * self.dt * np.diag(self.potential)
 
         # generate backward matrix
         self.frans = np.conjugate(self.trans)
