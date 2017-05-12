@@ -18,7 +18,7 @@
 #                    iħ ∂ψ/∂t = - ħ²/2m ∂²ψ/∂x² + Vψ
 # In this program, physical constants are neglected. Thus, the actual equa-
 # tion solved is
-#                     i ∂ψ/∂t = - ∂²ψ/∂x² + Vψ
+#                     i ∂ψ/∂t = -1/2 ∂²ψ/∂x² + Vψ
 # To solve this equation, first transform the equation into discrete form
 #    ψ(x,t+1) - ψ(x,t) = r/2 (ψ(x-1, t+1) + ψ(x+1, t+1) - 2ψ(x, t+1))
 #                      + r/2 (ψ(x-1, t) + ψ(x+1, t) - 2ψ(x, t))
