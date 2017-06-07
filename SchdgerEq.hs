@@ -36,9 +36,7 @@ laplace xs = (0.0:+0.0):(central xs (spc_tot-1))
 central :: [Complex Double] -> Int -> [Complex Double]
 central xs 1 = [0.0:+0.0]
 central xs n = (l+r-2*c)/(step_x:+0.0)**2:(central (tail xs) (n-1))
-    where l = head xs
-          r = head (tail (tail xs))
-          c = head (tail xs)
+    where (l:c:r:_) = xs
 
 -- Runge-Kutta method of explicit integration
 schrodinger :: [Complex Double] -> Double -> [Complex Double]
